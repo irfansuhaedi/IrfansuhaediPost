@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRFAN SUHAEDI</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function smoothTransition(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.style.opacity = '0';
+                section.style.pointerEvents = 'none';
+            });
+
+            const targetSection = document.getElementById(sectionId);
+            setTimeout(() => {
+                document.querySelectorAll('section').forEach(section => (section.style.display = 'none'));
+                targetSection.style.display = 'flex';
+                targetSection.style.pointerEvents = 'auto';
+                targetSection.style.opacity = '1';
+            }, 300);
+        }
+
+        function showHome() {
+            smoothTransition('home');
+            document.getElementById('bg-video-home').style.display = 'block'; // Show home video
+            document.getElementById('bg-video-experience').style.display = 'none'; // Hide experience video
+        }
+
+        function showExperience() {
+            smoothTransition('experience');
+            document.getElementById('bg-video-home').style.display = 'none'; // Hide home video
+            document.getElementById('bg-video-experience').style.display = 'block'; // Show experience video
+        }
+
+        // Function to change text color every second
+        function changeTextColor() {
+            const colors = ["#FF6347", "#3CB371", "#1E90FF", "#FFD700", "#FF1493", "#8A2BE2", "#FF4500"];
+            let index = 0;
+            setInterval(() => {
+                document.querySelector('#home h2').style.color = colors[index];
+                index = (index + 1) % colors.length;
+            }, 1000);
+        }
+
+        // Show home section and video by default when the page loads
+        window.onload = function() {
+            showHome();
+            changeTextColor(); // Start changing text color
+        };
+
+        // Function to toggle dropdown
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown-content');
+            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            color: #fff;
+            background-color: #1a1a1a;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+        }
+
+        header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 28px;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+            position: relative;
+        }
+
+        nav ul li a {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 12px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+            border-radius: 4px;
+        }
+
+        /* Dropdown Style */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 160px;
+            z-index: 1;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+
+        .dropdown-content a {
+            color: #fff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #555;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        section {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            transition: opacity 0.3s ease;
+        }
+
+        #home {
+            display: flex;
+        }
+
+        section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 32px;
+            margin-top: 0;
+            color: #fff;
+        }
+
+        section p {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            font-size: 18px;
+            color: #ddd;
+            line-height: 1.8;
+            margin: 10px 0;
+        }
+
+        /* Background Video for Home */
+        .video-background-home {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -2;
+        }
+
+        /* Background Video for Experience */
+        .video-background-experience {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -2;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .social-media {
+            position: fixed;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: slideIn 1s ease-out;
+        }
+
+        .social-media a {
+            margin: 10px 0;
+            transition: transform 0.3s ease;
+        }
+
+        .social-media a:hover {
+            transform: scale(1.1);
+        }
+
+        .social-media img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .social-media p {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            text-align: center;
+            padding: 10px;
+            background: #333;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Video for Home -->
+    <div class="video-background-home" id="bg-video-home">
+        <video autoplay muted loop>
+            <source src="https://i.imgur.com/AYxElek_lq.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <h1>IRFAN SUHAEDI</h1>
+        <nav>
+            <ul>
+                <li><a href="javascript:void(0);" onclick="showHome()">Home</a></li>
+                <li><a href="javascript:void(0);" onclick="showExperience()">Experience</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0);" onclick="toggleDropdown()">More</a>
+                    <div id="dropdown-content" class="dropdown-content">
+                        <a href="javascript:void(0);" onclick="showHome()">Contact</a>
+                        <a href="javascript:void(0);" onclick="showExperience()">About</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Social Media Links -->
+    <div class="social-media">
+        <p>Contact Me</p>
+        <a href="https://www.instagram.com/irfansuhaediii_/" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/120px-Instagram_icon.png" alt="Instagram">
+        </a>
+        <a href="https://wa.me/6289502702764" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/120px-WhatsApp.svg.png" alt="WhatsApp">
+        </a>
+        <a href="https://www.linkedin.com/in/irfan-suhaedi" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn">
+        </a>
+    </div>
+
+    <!-- Home Section -->
+    <section id="home">
+        <h2>Welcome to My Website!</h2>
+        <p>I am an experienced Fleet Administrator with a strong background in managing company vehicle operations efficiently and with high dedication. Enjoy browsing through information about me!</p>
+    </section>
+
+    <!-- Background Video for Experience -->
+    <div class="video-background-experience" id="bg-video-experience">
+        <video autoplay muted loop>
+            <source src="https://i.imgur.com/AzGKtrf_lq.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>My Experience</h2>
+
+        <div class="experience-container">
+            <div class="experience-item">
+                <h3>Staff Administrator</h3>
+                <p><strong>PT TAL SARANA LOGISTIK</strong> · Full-Time</p>
+                <p class="dates"><strong>March 2023 - Present · 1 year 10 months</strong></p>
+                <p><strong>Location:</strong> Tangerang, Banten, Indonesia</p>
+                <p>I am responsible for managing administrative tasks at PT TAL Sarana Logistik, ensuring smooth logistics operations, and providing daily administrative support.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 IRFAN SUHAEDI</p>
+    </footer>
+</body>
+</html>
